@@ -32,5 +32,5 @@ class Solution:
             
 
 s = Solution()
-print(s.twoSum(nums=[-1,-2,-3,-4,-5], target=-8))
+print(s.twoSum(nums=[-1,-2,-11,-4,-5], target=-12))
     

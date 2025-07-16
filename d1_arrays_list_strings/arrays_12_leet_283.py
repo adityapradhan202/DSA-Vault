@@ -1,5 +1,8 @@
 # Link - https://leetcode.com/problems/move-zeroes/
 from typing import List
+import numpy as np
+import pandas as pd
+
 
 class Solution:
     # Python solution - with inbuilt
@@ -25,42 +28,23 @@ class Solution:
         
         return nums
     
-    def moveZeroesTwoPointer(self, nums:List[int]) -> None:
-        i = 0
-        while i < len(nums):
+    # Best solution
+    def moveZeroesV2(self, nums:List[int]) -> None:
+        # example [1,0,2,0,3]
+        j = 0
+        for i in range(len(nums)):
             if nums[i] != 0:
-                break
-            i += 1
-        if i == len(nums):
-            return nums
-        elif len(nums) == 1 and nums[0] != 0:
-            return nums
-        elif 0 not in nums:
-            return nums
-        
-        p1 = 0
-        p2 = 1
-        while p1 < len(nums) and p2 < len(nums):
-            if nums[p1] == 0 and nums[p2] != 0:
-                temp = nums[p1]
-                nums[p1] = nums[p2]
-                nums[p2] = temp
-                print(nums)
-            elif nums[p1] == 0 and nums[p2] == 0:
-                if nums[p2+1] != 0:
-                    temp = nums[p2]
-                    nums[p2] = nums[p2+1]
-                    nums[p2+1] = temp
-                    print(nums)
-            
-            p1 += 1
-            p2 += 1
+                nums[j] = nums[i]
+                j += 1
+            else:
+                # If zero is encountered, i += 1 and move on
+                continue
+        for i in range(j, len(nums)):
+            nums[i] = 0
         return nums
     
-
-
 s = Solution()
-res = s.moveZeroesTwoPointer(nums=[0,1,0,3,12])
+res = s.moveZeroesV2(nums=[1,0,1,0])
 print(res)
 
 
